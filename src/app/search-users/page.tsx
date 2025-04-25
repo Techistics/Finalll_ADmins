@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 const Page = () => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState<string>(""); // Fixed: Explicitly typing state as string
 
   const data = [
     { id: 1, name: "Ali Khan", email: "ali@example.com" },
@@ -28,10 +28,10 @@ const Page = () => {
         <p className="text-center text-red-500">No users found</p>
       ) : (
         <div>
-          {filteredUsers.map((user) => (
-            <div key={user.name} className="border-b border-gray-200 py-2">
-              <p className="font-semibold">{user.name}</p>
-              <p className="text-gray-500">{user.email}</p>
+          {filteredUsers.map((userItem) => (
+            <div key={userItem.id} className="border-b border-gray-200 py-2">
+              <p className="font-semibold">{userItem.name}</p>
+              <p className="text-gray-500">{userItem.email}</p>
             </div>
           ))}
         </div>

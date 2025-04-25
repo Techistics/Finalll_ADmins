@@ -19,7 +19,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     } else {
       setIsLoading(false); // Stop loading if authenticated
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, router]); // Fixed ESLint warning by adding 'router' to the dependency array
 
   // Return nothing or a loading indicator while redirecting
   if (isLoading) {

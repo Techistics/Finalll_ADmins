@@ -13,7 +13,9 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
-    setActiveLink(window.location.pathname);
+    if (typeof window !== "undefined") {
+      setActiveLink(window.location.pathname); // Prevents SSR issue
+    }
   }, []);
 
   const isActive = (path: string) => {
@@ -31,6 +33,7 @@ const Sidebar = () => {
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         className="sm:hidden fixed top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded-md hover:bg-gray-700 transition-all"
+        aria-label="Open Sidebar"
       >
         <FaBars />
       </button>
@@ -49,7 +52,10 @@ const Sidebar = () => {
           <Link
             href="/dashboard"
             className={`block py-2 px-4 rounded transition-all ${isActive("/dashboard")}`}
-            onClick={() => { setActiveLink("/dashboard"); if (window.innerWidth < 640) setIsSidebarOpen(false); }}
+            onClick={() => { 
+              setActiveLink("/dashboard"); 
+              if (window.innerWidth < 640) setIsSidebarOpen(false); 
+            }}
           >
             <FaHome className="inline mr-2" /> Dashboard
           </Link>
@@ -57,7 +63,10 @@ const Sidebar = () => {
           <Link
             href="/users"
             className={`block py-2 px-4 rounded hover:text-blue-400 ${isActive("/users")}`}
-            onClick={() => { setActiveLink("/users"); if (window.innerWidth < 640) setIsSidebarOpen(false); }}
+            onClick={() => { 
+              setActiveLink("/users"); 
+              if (window.innerWidth < 640) setIsSidebarOpen(false); 
+            }}
           >
             <FaUsers className="inline mr-2" /> Users
           </Link>
@@ -65,7 +74,10 @@ const Sidebar = () => {
           <Link
             href="/register"
             className={`block py-2 px-4 rounded hover:text-blue-400 ${isActive("/register")}`}
-            onClick={() => { setActiveLink("/register"); if (window.innerWidth < 640) setIsSidebarOpen(false); }}
+            onClick={() => { 
+              setActiveLink("/register"); 
+              if (window.innerWidth < 640) setIsSidebarOpen(false); 
+            }}
           >
             <FaUsers className="inline mr-2" /> Register
           </Link>
@@ -73,7 +85,10 @@ const Sidebar = () => {
           <Link
             href="/login"
             className={`block py-2 px-4 rounded hover:text-blue-400 ${isActive("/login")}`}
-            onClick={() => { setActiveLink("/login"); if (window.innerWidth < 640) setIsSidebarOpen(false); }}
+            onClick={() => { 
+              setActiveLink("/login"); 
+              if (window.innerWidth < 640) setIsSidebarOpen(false); 
+            }}
           >
             <FaUsers className="inline mr-2" /> Login
           </Link>
@@ -81,7 +96,10 @@ const Sidebar = () => {
           <Link
             href="/privacypolicy"
             className={`block py-2 px-4 rounded hover:text-blue-400 ${isActive("/privacypolicy")}`}
-            onClick={() => { setActiveLink("/privacypolicy"); if (window.innerWidth < 640) setIsSidebarOpen(false); }}
+            onClick={() => { 
+              setActiveLink("/privacypolicy"); 
+              if (window.innerWidth < 640) setIsSidebarOpen(false); 
+            }}
           >
             <FaCog className="inline mr-2" /> Privacy
           </Link>
@@ -89,6 +107,7 @@ const Sidebar = () => {
           <button
             onClick={handleLogout}
             className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition-all w-full"
+            aria-label="Logout"
           >
             Logout
           </button>

@@ -8,7 +8,7 @@ type ButtonProps = {
   className?: string;
 };
 
-const Button = ({ text, onClick, type = "button", className }: ButtonProps) => {
+const Button = ({ text, onClick, type = "button", className = "" }: ButtonProps) => {
   return (
     <button
       type={type}

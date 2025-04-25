@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
         Privacy Policy
       </h1>
       <p className="privacy-policy-intro text-lg text-gray-700 mt-4 text-center">
-        Welcome to <b>DevClyst's</b> Admin Panel! We take your privacy
+        Welcome to <b>DevClyst&apos;s</b> Admin Panel! We take your privacy
         seriously, but we also like to keep things light and fun.
       </p>
       <div className="privacy-policy-content mt-6 px-4">
@@ -18,7 +18,7 @@ const PrivacyPolicy = () => {
         </h2>
         <p className="text-gray-600">
           We collect basic information like your name, email, and phone number.
-          Don't worry, we won't be sending you a million emails (unless you sign
+          Don&apos;t worry, we won&apos;t be sending you a million emails (unless you sign
           up for our newsletter... just kidding, we don’t have one yet).
         </p>
         <h2 className="text-2xl font-semibold text-sky-700 mt-4">
@@ -27,7 +27,7 @@ const PrivacyPolicy = () => {
         <p className="text-gray-600">
           We use this information to make our admin panel experience better for
           you! It helps us improve features, send important updates, and ensure
-          you're not locked out of your account. We promise to keep things
+          you&apos;re not locked out of your account. We promise to keep things
           minimal and only ask for what we need.
         </p>
         <h2 className="text-2xl font-semibold text-sky-700 mt-4">
@@ -36,9 +36,9 @@ const PrivacyPolicy = () => {
         <p className="text-gray-600">
           We don’t sell or share your information with shady companies. Nope,
           not a chance. The only people who will see your data are the ones
-          working hard to make the admin panel awesome for you. It's all about
+          working hard to make the admin panel awesome for you. It&apos;s all about
           improving your experience. If we ever need to contact you for
-          something important, rest assured, it'll be for a good reason (like
+          something important, rest assured, it&apos;ll be for a good reason (like
           bug fixes or product updates, no spam!).
         </p>
         <h2 className="text-2xl font-semibold text-sky-700 mt-4">
@@ -51,7 +51,7 @@ const PrivacyPolicy = () => {
           is safe with us!
         </p>
         <h2 className="text-2xl font-semibold text-sky-700 mt-4">
-          5. Your Rights – You're the Boss!
+          5. Your Rights – You&apos;re the Boss!
         </h2>
         <p className="text-gray-600">
           You can ask us to update or delete your information anytime! You’re in
@@ -64,7 +64,7 @@ const PrivacyPolicy = () => {
         <p className="text-gray-600">
           We do our best to keep your info safe, like a digital fortress
           (without the dragons). Our security measures are top-notch, but
-          remember – we can’t protect you from your own bad password choices.
+          remember – we can&apos;t protect you from your own bad password choices.
           Please don’t use “123456” or “password” (we’ve seen it all!).
         </p>
         <h2 className="text-2xl font-semibold text-sky-700 mt-4">
@@ -88,8 +88,6 @@ const PrivacyPolicy = () => {
           enjoy using the admin panel. We’re working hard to make it even
           better.
         </p>
-        const adminPanelName = process.env.NEXT_PUBLIC_ADMIN_PANEL;
-        console.log(adminPanelName); // This will log "Hassnain_9"
       </div>
     </div>
   );

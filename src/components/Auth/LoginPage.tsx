@@ -5,30 +5,27 @@ import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [emailTouched, setEmailTouched] = useState(false);
-  const [passwordTouched, setPasswordTouched] = useState(false);
-  const [invalidEmailError, setInvalidEmailError] = useState(false);
-  const [invalidCredentialsError, setInvalidCredentialsError] = useState(false);
-  const [passwordStrength, setPasswordStrength] = useState("");
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [emailTouched, setEmailTouched] = useState<boolean>(false);
+  const [passwordTouched, setPasswordTouched] = useState<boolean>(false);
+  const [invalidEmailError, setInvalidEmailError] = useState<boolean>(false);
+  const [invalidCredentialsError, setInvalidCredentialsError] = useState<boolean>(false);
+  const [passwordStrength, setPasswordStrength] = useState<string>("");
+  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Using AuthContext to manage login state
   const { login } = useAuth();
   const router = useRouter();
 
-  const checkStrength = (password: string) => {
+  const checkStrength = (password: string): string => {
     if (password.length < 6) return "Weak";
     else if (password.length <= 9) return "Medium";
     else if (password.length > 9 && /\W|\d/.test(password)) return "Strong";
     return "Medium";
   };
 
-  const checker = () => {
+  const checker = (): void => {
     let hasError = false;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -42,18 +39,12 @@ export default function LoginForm() {
 
     // Email required validation
     if (email === "") {
-      setEmailError(true);
       hasError = true;
-    } else {
-      setEmailError(false);
     }
 
     // Password required validation
     if (password === "") {
-      setPasswordError(true);
       hasError = true;
-    } else {
-      setPasswordError(false);
     }
 
     if (!hasError) {
@@ -63,18 +54,15 @@ export default function LoginForm() {
       setTimeout(() => {
         setIsLoading(false);
 
-        // Attempt login with stored credentials in localStorage
         const success = login(email, password);
         if (success) {
           setSubmitSuccess(true);
           setTimeout(() => setSubmitSuccess(false), 3000);
-          // Redirect to dashboard on successful login
           router.push("/dashboard");
         } else {
           setInvalidCredentialsError(true);
         }
 
-        // Clear fields after attempt
         setEmail("");
         setPassword("");
         setPasswordStrength("");
@@ -166,4 +154,4 @@ export default function LoginForm() {
       )}
     </div>
   );
-};
+}

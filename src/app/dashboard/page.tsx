@@ -1,19 +1,9 @@
 "use client";
 
-import { useAuth } from "../../context/AuthContext";
-import { useRouter } from "next/navigation";
 import ProtectedRoute from "../../components/ProtectedRoutes";
 import UserGrowthChart from "@/components/UserGrowthChart";
 
-export default function Dashboard() {
-  const { logout } = useAuth();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    logout();
-    router.push("/login");
-  };
-
+const Dashboard: React.FC = () => {
   return (
     <ProtectedRoute>
       <div className="space-y-6">
@@ -28,4 +18,6 @@ export default function Dashboard() {
       </div>
     </ProtectedRoute>
   );
-}
+};
+
+export default Dashboard;

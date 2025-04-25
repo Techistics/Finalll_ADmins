@@ -1,8 +1,9 @@
-// app/layout.tsx
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
 import { AuthProvider } from "@/context/AuthContext";
+
+// No changes needed for metadata, it's correctly set up.
 
 export const metadata = {
   title: "Admin Dashboard",
@@ -13,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="h-full">
       <body className="h-full overflow-hidden flex">
-        <AuthProvider>
+        <AuthProvider> {/* This is fine as long as the context is correctly typed in its own file */}
           <Sidebar />
           <div className="flex-1 flex flex-col h-full">
             <Navbar />

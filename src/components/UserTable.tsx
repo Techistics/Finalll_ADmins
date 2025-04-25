@@ -1,4 +1,3 @@
-// UserTable.tsx
 "use client";
 import React from "react";
 import Button from './Button';
@@ -26,9 +25,9 @@ const UserTable = ({
   onEdit,
   onDelete,
 }: Props) => {
-  const getSortIcon = (field: keyof User) => {
+  const getSortIcon = (field: keyof User): string | null => {
     if (sortField !== field) return null;
-    return sortOrder === "asc" ? "↑" : "↓";
+    return sortOrder === "asc" ? "↑" : "↓";  // Ensures correct string return
   };
 
   return (

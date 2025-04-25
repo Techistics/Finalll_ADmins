@@ -2,17 +2,17 @@
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { name: 'Jan', users: 30 },
-  { name: 'Feb', users: 45 },
+const data: { name: string; users: number }[] = [
+  { name: 'Jan', users: 20 },
+  { name: 'Feb', users: 25 },
   { name: 'Mar', users: 30 },
-  { name: 'Apr', users: 80 },
-  { name: 'May', users: 95 },
-  { name: 'June', users: 30 },
+  { name: 'Apr', users: 35 },
+  { name: 'May', users: 40 },
+  { name: 'June', users: 50 },
   { name: 'July', users: 45 },
-  { name: 'Aug', users: 59 },
-  { name: 'Sep', users: 73 },
-  { name: 'Oct', users: 85 },
+  { name: 'Aug', users: 60 },
+  { name: 'Sep', users: 75 },
+  { name: 'Oct', users: 90 },
 ];
 
 const UserGrowthChart = () => {

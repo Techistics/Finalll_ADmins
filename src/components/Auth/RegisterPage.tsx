@@ -2,19 +2,27 @@
 
 import { useState } from "react";
 
+// Define User interface for type safety
+interface User {
+  email: string;
+  name: string;
+  phone: string;
+  password: string;
+}
+
 export default function RegisterForm() {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [phoneError, setPhoneError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [passwordStrength, setPasswordStrength] = useState("");
-  const [strengthMessage, setStrengthMessage] = useState("");
-  const [feedbackMessage, setFeedbackMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
+  const [nameError, setNameError] = useState<string>("");
+  const [phoneError, setPhoneError] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<string>("");
+  const [passwordStrength, setPasswordStrength] = useState<string>("");
+  const [strengthMessage, setStrengthMessage] = useState<string>("");
+  const [feedbackMessage, setFeedbackMessage] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const evaluateStrength = (pwd: string) => {
     let score = 0;
@@ -49,7 +57,7 @@ export default function RegisterForm() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     setIsSubmitting(true);
     setFeedbackMessage("");
@@ -92,8 +100,8 @@ export default function RegisterForm() {
     }
 
     // Check if user already exists in localStorage
-    const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
-    const userExists = storedUsers.some((user: any) => user.email === email);
+    const storedUsers: User[] = JSON.parse(localStorage.getItem("users") || "[]");
+    const userExists: boolean = storedUsers.some((user: User) => user.email === email);
 
     if (userExists) {
       setFeedbackMessage("User with this email already exists.");

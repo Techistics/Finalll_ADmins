@@ -2,6 +2,14 @@
 
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
+// Define user type to avoid using `any`
+interface User {
+  email: string;
+  password: string;
+  name: string;
+  phone: string;
+}
+
 interface AuthContextType {
   isAuthenticated: boolean;
   login: (email: string, password: string) => boolean;
@@ -20,8 +28,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = (email: string, password: string) => {
-    const storedUsers: Array<any> = JSON.parse(localStorage.getItem("users") || "[]");
-    const user = storedUsers.find((user: any) => user.email === email && user.password === password);
+    const storedUsers: Array<User> = JSON.parse(localStorage.getItem("users") || "[]"); // Using User type instead of any
+    const user = storedUsers.find((user: User) => user.email === email && user.password === password); // Fixed type issue
 
     if (user) {
       setIsAuthenticated(true);
@@ -34,17 +42,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const register = (email: string, password: string, name: string, phone: string) => {
     if (!email || !password || !name || !phone) return false;
 
-    const storedUsers: Array<any> = JSON.parse(localStorage.getItem("users") || "[]");
+    const storedUsers: Array<User> = JSON.parse(localStorage.getItem("users") || "[]"); // Using User type instead of any
 
     // Check if user already exists
-    const userExists = storedUsers.some((user: any) => user.email === email);
+    const userExists = storedUsers.some((user: User) => user.email === email);
 
     if (userExists) {
       return false; // User already exists
     }
 
     // Create new user object and store it
-    const newUser = { email, password, name, phone };
+    const newUser: User = { email, password, name, phone }; // Defined User type
     storedUsers.push(newUser);
     localStorage.setItem("users", JSON.stringify(storedUsers));
 

@@ -1,16 +1,17 @@
-'use client'
-import React from "react";
-import Button from './Button'
+'use client';
 
-type Props = {
+import React from "react";
+import Button from './Button';
+
+type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: (data: any) => void;
+  onConfirm: (data: { name: string; email: string }) => void;
   type: "add" | "edit" | "delete";
-  defaultData?: any;
+  defaultData?: { name: string; email: string } | undefined; // Correct type for defaultData
 };
 
-const Modal = ({ isOpen, onClose, onConfirm, type, defaultData }: Props) => {
+const Modal = ({ isOpen, onClose, onConfirm, type, defaultData }: ModalProps) => {
   if (!isOpen) return null;
 
   return (
@@ -29,7 +30,7 @@ const Modal = ({ isOpen, onClose, onConfirm, type, defaultData }: Props) => {
               onSubmit={(e) => {
                 e.preventDefault();
                 const formData = new FormData(e.target as HTMLFormElement);
-                const userData = Object.fromEntries(formData.entries());
+                const userData = Object.fromEntries(formData.entries()) as { name: string; email: string };
                 onConfirm(userData);
               }}
               className="space-y-4"
@@ -73,8 +74,10 @@ const Modal = ({ isOpen, onClose, onConfirm, type, defaultData }: Props) => {
                   className="bg-gray-300 text-black hover:bg-gray-400"
                 />
                 <button
-                  onClick={() => onConfirm(defaultData)}
-                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-blue-600 transition duration-200"
+                  onClick={() => {
+                    if (defaultData) onConfirm(defaultData); // Check that defaultData is available
+                  }}
+                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-200"
                 >
                   Delete
                 </button>

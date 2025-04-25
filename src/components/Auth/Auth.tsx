@@ -5,7 +5,7 @@ import Login from "./LoginPage";
 import Register from "./RegisterPage";
 
 export default function AuthPage() {
-  const [activeTab, setActiveTab] = useState("login");
+  const [activeTab, setActiveTab] = useState<"login" | "register">("login"); // Fixed type for useState
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
