@@ -74,7 +74,6 @@ export default function LoginForm() {
 
   return (
     <div className="space-y-6 text-black">
-      {/* Email Input */}
       <div>
         <input
           type="email"
@@ -92,7 +91,6 @@ export default function LoginForm() {
         )}
       </div>
 
-      {/* Password Input */}
       <div>
         <input
           type="password"
@@ -124,14 +122,12 @@ export default function LoginForm() {
         )}
       </div>
 
-      {/* Error for Invalid Credentials */}
       {invalidCredentialsError && (
         <p className="text-red-600 text-sm text-center font-medium">
           Invalid email or password
         </p>
       )}
 
-      {/* Submit Button */}
       <div className="text-center">
         <button
           onClick={checker}
@@ -146,7 +142,6 @@ export default function LoginForm() {
         </button>
       </div>
 
-      {/* Success Feedback */}
       {submitSuccess && (
         <div className="text-green-600 text-center font-medium transition-opacity duration-500">
           Logged in successfully!
